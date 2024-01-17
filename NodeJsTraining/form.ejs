@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Enhanced Form</title>
+  <link rel="stylesheet" href="styles.css"> </head>
+<body>
+  <form action="/process-form" method="post">
+    <h1>User Information</h1>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" min="18" max="120"><br><br>
+
+    <label for="phone">Phone number:</label>
+    <input type="tel" id="phone" name="phone"><br><br>
+
+    <label>Gender:</label>
+    <input type="radio" id="gender-male" name="gender" value="male"> Male
+    <input type="radio" id="gender-female" name="gender" value="female"> Female
+    <input type="radio" id="gender-other" name="gender" value="other"> Other<br><br>
+
+    <label>Interests:</label>
+    <input type="checkbox" id="interest-music" name="interests[]" value="music"> Music
+    <input type="checkbox" id="interest-movies" name="interests[]" value="movies"> Movies
+    <input type="checkbox" id="interest-sports" name="interests[]" value="sports"> Sports<br><br>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country">
+      <option value="india">India</option>
+      <option value="usa">USA</option>
+      <option value="uk">UK</option>
+    </select><br><br>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
