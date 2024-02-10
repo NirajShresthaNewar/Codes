@@ -47,6 +47,11 @@ app.use("/api", createRoutes);
 // Define a route for the "/even" path that calls the `newFunc` function (now uncommented)
 //app.get("/even", newFunc);
 
+
+const authRouter = require("./routes/auth.js");
+app.use("/auth", authRouter);
+
+
 // Set the port number for the server
 let PORT = 5000;
 
