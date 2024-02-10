@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Selection</title>
+</head>
+<body>
+    <h4>Red</h4>
+    <script>
+        var h4Elements = document.getElementsByTagName("h4");
+        for (var i = 0; i < h4Elements.length; i++) {
+            if (h4Elements[i].innerText === "Red") {
+                console.log("Element with text 'Red':", h4Elements[i]);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

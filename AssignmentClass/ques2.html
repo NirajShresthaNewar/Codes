@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Selection</title>
+</head>
+<body>
+    <div class="green">Green</div>
+    <script>
+        var greenDivs = document.getElementsByTagName("div");
+        for (var i = 0; i < greenDivs.length; i++) {
+            if (greenDivs[i].className === "green" && greenDivs[i].innerText === "Green") {
+                console.log("Div with class 'green' and text 'Green':", greenDivs[i]);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Selection</title>
+</head>
+<body>
+    <div id="blue">Blue</div>
+    <script>
+        var blueDivs = document.getElementsByClassName("blue");
+        for (var i = 0; i < blueDivs.length; i++) {
+            if (blueDivs[i].id === "blue" && blueDivs[i].innerText === "Blue") {
+                console.log("Div with ID 'blue' and text 'Blue':", blueDivs[i]);
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
