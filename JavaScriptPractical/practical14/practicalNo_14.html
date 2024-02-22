@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    /* Basic CSS for styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    #todo-list {
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .task {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .task.completed {
+        text-decoration: line-through;
+        color: #999;
+    }
+</style>
+</head>
+<body>
+<div id="todo-list">
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <ul id="tasks"></ul>
+</div>
+
+<script>
+    // Function to create a new task element
+    function createTaskElement(taskText) {
+        return `
+            <li class="task">
+                <input type="checkbox">
+                <label>${taskText}</label>
+                <button class="delete-btn">Delete</button>
+            </li>
+        `;
+    }
+
+    // Function to add a new task
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskText = taskInput.value.trim();
+        if (taskText !== '') {
+            const taskElement = createTaskElement(taskText);
+            document.getElementById('tasks').innerHTML += taskElement;
+            taskInput.value = '';
+        }
+    }
+
+    // Handle adding a task when Enter key is pressed
+    document.getElementById('taskInput').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            addTask();
+        }
+    });
+
+    // Function to mark task as completed
+    document.getElementById('tasks').addEventListener('change', function (e) {
+        if (e.target.type === 'checkbox') {
+            const task = e.target.parentElement;
+            task.classList.toggle('completed', e.target.checked);
+        }
+    });
+
+    // Event delegation for handling delete button clicks
+    document.getElementById('tasks').addEventListener('click', function (e) {
+        if (e.target.classList.contains('delete-btn')) {
+            e.target.parentElement.remove();
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Content Filtering</title>
+<style>
+    /* Basic CSS for styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+    #filters {
+        margin-bottom: 20px;
+    }
+    .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #fff;
+    }
+</style>
+</head>
+<body>
+<div id="filters">
+    <label for="category">Category:</label>
+    <select id="category">
+        <option value="all">All</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+        <option value="books">Books</option>
+    </select>
+    <label for="price">Price Range:</label>
+    <select id="price">
+        <option value="all">All</option>
+        <option value="0-50">$0 - $50</option>
+        <option value="51-100">$51 - $100</option>
+        <option value="101-200">$101 - $200</option>
+    </select>
+</div>
+<div id="products">
+    <div class="product" data-category="electronics" data-price="150">
+        <h2>Smartphone</h2>
+        <p>Category: Electronics</p>
+        <p>Price: $150</p>
+    </div>
+    <div class="product" data-category="clothing" data-price="25">
+        <h2>T-Shirt</h2>
+        <p>Category: Clothing</p>
+        <p>Price: $25</p>
+    </div>
+    <div class="product" data-category="books" data-price="60">
+        <h2>Book</h2>
+        <p>Category: Books</p>
+        <p>Price: $60</p>
+    </div>
+    <!-- Additional products here -->
+</div>
+
+<script>
+    // Function to filter products based on selected category and price range
+    function filterProducts() {
+        const category = document.getElementById('category').value;
+        const priceRange = document.getElementById('price').value;
+
+        const products = document.querySelectorAll('.product');
+        products.forEach(product => {
+            const categoryMatch = (category === 'all' || product.dataset.category === category);
+            const priceMatch = (priceRange === 'all' || isPriceInRange(product.dataset.price, priceRange));
+            
+            if (categoryMatch && priceMatch) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+
+    // Function to check if the product price is within the selected price range
+    function isPriceInRange(price, range) {
+        const [min, max] = range.split('-').map(Number);
+        const productPrice = parseInt(price);
+        return productPrice >= min && productPrice <= max;
+    }
+
+    // Event listeners for filter changes
+    document.getElementById('category').addEventListener('change', filterProducts);
+    document.getElementById('price').addEventListener('change', filterProducts);
+
+    // Initial filter application
+    filterProducts();
+</script>
+</body>
+</html>

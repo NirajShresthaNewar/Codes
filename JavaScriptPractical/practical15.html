@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+</head>
+<body>
+<form id="registrationForm" onsubmit="return validateForm()">
+    <label for="email">Email:</label>
+    <input type="email" id="email" required><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" min="1" max="120" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" required><br>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" required><br>
+
+    <label for="zipCode">Zip Code:</label>
+    <input type="text" id="zipCode" pattern="\d{5}(-\d{4})?"><br>
+
+    <label for="terms">Agree to terms and conditions:</label>
+    <input type="checkbox" id="terms" required><br>
+
+    <label for="url">Website URL:</label>
+    <input type="url" id="url"><br>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" max="9999-12-31"><br>
+
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" accept=".jpg, .jpeg, .png" required><br>
+
+    <label for="country">Country:</label>
+    <select id="country" required>
+        <option value="">Select Country</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+        <option value="canada">Canada</option>
+    </select><br>
+
+    <label for="strength">Password Strength:</label>
+    <progress id="strength" max="100" value="0"></progress><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<script>
+function validateForm() {
+    const email = document.getElementById('email').value;
+    const age = document.getElementById('age').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const zipCode = document.getElementById('zipCode').value;
+    const terms = document.getElementById('terms').checked;
+    const url = document.getElementById('url').value;
+    const date = document.getElementById('date').value;
+    const file = document.getElementById('file').files[0];
+    const country = document.getElementById('country').value;
+
+    if (!validateEmail(email)) {
+        alert('Please enter a valid email address.');
+        return false;
+    }
+
+    if (age < 1 || age > 120 || isNaN(age)) {
+        alert('Please enter a valid age between 1 and 120.');
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match.');
+        return false;
+    }
+
+    if (!validateZipCode(zipCode)) {
+        alert('Please enter a valid zip code.');
+        return false;
+    }
+
+    if (!terms) {
+        alert('Please agree to the terms and conditions.');
+        return false;
+    }
+
+    if (!validateURL(url)) {
+        alert('Please enter a valid URL.');
+        return false;
+    }
+
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (date > currentDate) {
+        alert('Please select a date not set in the future.');
+        return false;
+    }
+
+    const fileSizeLimit = 5 * 1024 * 1024; // 5 MB
+    if (file && file.size > fileSizeLimit) {
+        alert('File size exceeds the limit (5MB).');
+        return false;
+    }
+
+    if (country === '') {
+        alert('Please select a country.');
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateZipCode(zipCode) {
+    const zipCodeRegex = /^\d{5}(-\d{4})?$/;
+    return zipCodeRegex.test(zipCode);
+}
+
+function validateURL(url) {
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlRegex.test(url);
+}
+
+document.getElementById('password').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const strengthMeter = document.getElementById('strength');
+    const strength = calculatePasswordStrength(password);
+    strengthMeter.value = strength;
+});
+
+function calculatePasswordStrength(password) {
+    let strength = 0;
+    if (password.length >= 8) {
+        strength += 30;
+        if (/[a-z]/.test(password)) strength += 20;
+        if (/[A-Z]/.test(password)) strength += 20;
+        if (/\d/.test(password)) strength += 20;
+        if (/[^a-zA-Z0-9]/.test(password)) strength += 20;
+    }
+    return strength;
+}
+</script>
+</body>
+</html>
