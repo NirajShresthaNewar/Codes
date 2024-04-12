@@ -3,13 +3,13 @@
 <?php  
     require_once("config.php");
     session_start();
-	echo "session start";
+	echo "session start from session.php";
     $logged = false;
     //checking if anyone(admin/email)is logged in or not
     if(isset($_SESSION['logged']))
     {
         if ($_SESSION['logged'] == true)
-        {
+        {echo "session not destroyed from session.php";
             $logged = true ;
             $email = $_SESSION['email'];
 			
@@ -20,6 +20,8 @@
 
 
     if($logged!= true){
+       echo "connected user3";
+		
         $email = "";
         if (isset($_POST['email']) && isset($_POST['password']))
         {echo "connected user3";
@@ -52,7 +54,7 @@
                 header("Location:../users/user/index.php");
             }  
             // admin
-            $sql = "SELECT * FROM admin WHERE email='$email' AND pass='$password' ";
+            $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password' ";
             $result = mysqli_query($con,$sql);
             $count = mysqli_num_rows($result);
             if ($count == 1) {
@@ -64,7 +66,7 @@
                 header("Location:../users/admin/index.php");
             }
 			
-			 $sql = "SELECT * FROM meter_reader WHERE email='$email' AND pass='$password' ";
+			 $sql = "SELECT * FROM meter_reader WHERE email='$email' AND password='$password' ";
             $result = mysqli_query($con,$sql);
             $count = mysqli_num_rows($result);
             if ($count == 1) {
@@ -77,5 +79,10 @@
             }
 
         }
+		
+		else{
+                $_SESSION['logged']=false;
+			
+		}
     }
 ?>

@@ -8,7 +8,7 @@ require 'vendor/autoload.php'; // Load Composer's autoloader
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "waterbilling";
+$dbname = "wbillingsystem";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

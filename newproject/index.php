@@ -1,13 +1,16 @@
 <?php 
 require_once("connection/config.php");
-require_once("connection/session.php");
+include "connection/session.php";
 // if ($count===0) {
 //     $err_login="There were some problem";
 // }
+
+//session_start();
+
 if(isset($_SESSION['logged']))
-{
+{echo "INSIDE1";
     if ($_SESSION['logged'] == true)
-    {
+    {echo "INSIDE";
         if ($_SESSION['account']=="admin") {
                 header("Location:users/admin/index.php");
             }
@@ -19,26 +22,23 @@ if(isset($_SESSION['logged']))
             }
     }  
     else {
-        header("Location:index.php");
+        //header("Location:index.php");
+		header("Location:login.php");
       }  
 }
 
 if(isset($_POST['login_submit'])) {
     if(!(isset($_POST['email']))) {
-        if(!(isset($_POST['pass']))) {
-            location('index.php');    
+        if(!(isset($_POST['password']))) {
+            location('login.php');    
         }
     }
 }
 
 
-if(isset($_SESSION['logged']))
-{
-    if ($_SESSION['logged'] == false)
-    {
-		header("Location:login.php");
-	}
-}
+
 ?>
+
+
 
 
