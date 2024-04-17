@@ -1,5 +1,5 @@
 <?php
-//require_once("connection/session.php");
+require_once("connection/session.php");
 
 ?>
 

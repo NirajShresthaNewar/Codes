@@ -16,15 +16,16 @@
 			
         }
     }else {
-	$logged=false;}
+	$logged=false;
+    $_SESSION['logged']=false;}
 
 
     if($logged!= true){
-       echo "connected user3";
+      
 		
         $email = "";
         if (isset($_POST['email']) && isset($_POST['password']))
-        {echo "connected user3";
+        {echo "fetching email";
 			
             $email=$_POST['email'];
             $password=$_POST['password'];            
@@ -34,12 +35,13 @@
             $password = stripslashes($password);
             $password = mysqli_real_escape_string($con,$password);
             
-            //DB HAS 2 TABLES ADMIN AND USER BOTH HAVING THEIR OWN ATTRIBUTES
-            //EMAIL AND PASSWORD      
+            //DB HAS 3 TABLES ADMIN READER AND USER BOTH HAVING THEIR OWN ATTRIBUTES
+            //EMAIL AND PASSWORD 
+
             // user       
             $sql = "SELECT * FROM user WHERE email='$email' AND password='$password' ";
             $result = mysqli_query($con,$sql);
-			if($result){echo "connected user";}
+			
 			
 
             $count = mysqli_num_rows($result);
@@ -50,7 +52,7 @@
                 $_SESSION['uid']=$row['user_id'];
                 $_SESSION['email'] = $email;
                 $_SESSION['account']="user";
-                // echo "Yadpde";
+                
                 header("Location:../users/user/index.php");
             }  
             // admin
@@ -76,6 +78,14 @@
                 $_SESSION['rid']=$row['reader_id'];
                 $_SESSION['account']="reader";
                 header("Location:../users/reader/index.php");
+            }
+            //email pass wrong redirect 
+            if($_SESSION['logged']==false)
+            {
+             
+                
+                header("Location:../index.php");
+                
             }
 
         }

@@ -16,13 +16,13 @@
         <?php           
        // if(isset($_SESSION['user_id'])){
           ?>
-          <a href="" style="text-decoration:none;">
+          <a href="index.php" style="text-decoration:none;">
             <i class="fa fa-user mr-5" style="font-size:30px; color:#fff;" aria-hidden="true"></i>
          </a>
           <?php
       //  } else {
             ?>
-            <a href="" style="text-decoration:none;">
+            <a href="../../assets/logout.php" style="text-decoration:none;">
                     <i class="fa fa-sign-in mr-5" style="font-size:30px; color:#fff;" aria-hidden="true"></i>
             </a>
 
