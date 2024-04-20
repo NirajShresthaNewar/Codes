@@ -18,7 +18,7 @@
     require_once('../../connection/config.php'); 
     require_once('../../connection/session.php'); 
 	 include "./readerHeader.php";
-            include "./sidebar.php";
+     include "./sidebar.php";
 
     if ($logged==false) {
          header("Location:../../index.php");
@@ -32,9 +32,12 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Generate Bills </h4>
-                    <h5 style="color:white;">
+                  <a href="Includes/reader.php">
+
+                      <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
+                      <h4 style="color:white;">Generate Bills </h4>
+                      <h5 style="color:white;">
+                    </a>
                     <?php
 					
                     ?></h5>
@@ -50,7 +53,6 @@
        
 
 
-    <script type="text/javascript" src="./assets/js/ajaxWork.js"></script>    
     <script type="text/javascript" src="./assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>

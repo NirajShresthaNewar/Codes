@@ -90,3 +90,14 @@
       .sidebar a {font-size: 18px;}
     }
 
+/*reader*/
+.reader_search {
+height: 50vh;
+width: 450px;
+border: black;
+border-radius: 15px;
+background-color: linear-gradient(to right, #001c68, #00b8a9);
+box-sizing: border-box;
+box-shadow: #3B3131;
+z-index: 2;
+}

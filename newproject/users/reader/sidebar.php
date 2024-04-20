@@ -1,7 +1,9 @@
+
+
 <!-- Sidebar -->
 <div class="sidebar" id="mySidebar">
 <div class="side-header">
-    <img src="./assets/images/logo.png" width="120" height="120" alt="Swiss Collection"> 
+    <img src="assets/images/logo.png" width="120" height="120" alt="reader"> 
     <h5 style="margin-top:10px;">Hello,meter reader</h5>
 </div>
 
@@ -16,5 +18,4 @@
 <div id="main">
     <button class="openbtn" onclick="openNav()"><i class="fa fa-home"></i></button>
 </div>
-
 

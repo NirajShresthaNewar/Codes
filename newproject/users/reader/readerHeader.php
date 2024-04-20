@@ -2,12 +2,14 @@
  
 
 ?>
+
+
        
  <!-- nav -->
- <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background-color: #3B3131;">
+ <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background: linear-gradient(to right, #001c68, #00b8a9);">
     
     <a class="navbar-brand ml-5" href="./index.php">
-        <img src="./assets/images/logo.png" width="80" height="80" alt="Swiss Collection">
+        <img src="./assets/images/logo.png" width="80" height="80" alt="reader">
     </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
     

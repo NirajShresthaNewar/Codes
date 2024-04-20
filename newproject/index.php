@@ -1,11 +1,7 @@
 <?php 
 require_once("connection/config.php");
 include "connection/session.php";
-// if ($count===0) {
-//     $err_login="There were some problem";
-// }
 
-//session_start();
 
 if(isset($_SESSION['logged']))
 {echo "INSIDE1";
@@ -27,13 +23,6 @@ if(isset($_SESSION['logged']))
       }  
 }
 
-if(isset($_POST['login_submit'])) {
-    if(!(isset($_POST['email']))) {
-        if(!(isset($_POST['password']))) {
-            location('login.php');    
-        }
-    }
-}
 
 
 

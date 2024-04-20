@@ -12,7 +12,17 @@
         {echo "session not destroyed from session.php";
             $logged = true ;
             $email = $_SESSION['email'];
-			
+	
+        if ($_SESSION['account']=="admin") {
+                header("Location:users/admin/index.php");
+            }
+        elseif ($_SESSION['account']=="user") {
+                header("Location:users/user/index.php");
+            }
+			elseif ($_SESSION['account']=="user") {
+                header("Location:users/reader/index.php");
+            }
+    
 			
         }
     }else {
