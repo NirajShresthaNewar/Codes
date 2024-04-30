@@ -28,34 +28,28 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Bills view</h4>
-                    <h5 style="color:white;">
-                    <?php
-					
-                    ?></h5>
+                   <a href="./Includes/billsViewAdmin.php"><i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
+                       <h4 style="color:white;">Bills view</h4>
+                       
+                     </a> 
+                       
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="card">
-                    <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">complain view</h4>
-                    <h5 style="color:white;">
-                    <?php
-                     
-                   ?>
-                   </h5>
+            <a href="./Includes/complaintView.php"><i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
+                <h4 style="color:white;">complain view</h4>
+                </a>        
+                    
                 </div>
             </div>
             <div class="col-sm-3">
             <div class="card">
-                    <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">users</h4>
-                    <h5 style="color:white;">
-                    <?php
-                    
-                   ?>
-                   </h5>
+            <a href="Includes/addReader.php">
+
+                <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
+                <h4 style="color:white;">Add Meter Reader</h4>
+                </a>     
                 </div>
             </div>
          

@@ -1,5 +1,5 @@
 <?php
-
+require_once('../../../connection/config.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -11,13 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Update meter reading in database
     $query = "INSERT INTO meter_reading (user_id, previous_reading_value, previous_reading_date, current_reading_value, current_reading_date) VALUES (?, ?, ?, ?, ?)";
-    $statement = $conn->prepare($query);
+    $statement = $con->prepare($query);
     $statement->bind_param('idsss', $userId, $prevReading, $prevDate, $currReading, $currentDate);
     $statement->execute();
 
     // Fetch the tariff rate based on the tariff ID associated with the user
     $query = "SELECT additional_charge_rate	 FROM tariff WHERE tariff_id = 1";
-    $statement = $conn->prepare($query);
+    $statement = $con->prepare($query);
     $statement->execute();
     $result = $statement->get_result();
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //fetching reading id
     $query ="select max(reading_id) as latestReadingId from meter_reading";
-    $result = $conn->query($query);
+    $result = $con->query($query);
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $reading_id=$row['latestReadingId'];
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update bill details in database
     
     $query = "INSERT INTO bill (reading_id,user_id,tariff_id,units,total_amount) VALUES ($reading_id,$userId,1,$unit,$billAmount)";
-    $statement = $conn->prepare($query);
+    $statement = $con->prepare($query);
     
    if($statement->execute()){
     if(!$statement->affected_row>0){
@@ -67,5 +67,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close connection
-$conn->close();
+$con->close();
 ?>

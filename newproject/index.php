@@ -1,12 +1,11 @@
 <?php 
 require_once("connection/config.php");
-include "connection/session.php";
-
-
+//include "connection/session.php";
+session_start();
 if(isset($_SESSION['logged']))
-{echo "INSIDE1";
+{
     if ($_SESSION['logged'] == true)
-    {echo "INSIDE";
+    {
         if ($_SESSION['account']=="admin") {
                 header("Location:users/admin/index.php");
             }
@@ -21,6 +20,8 @@ if(isset($_SESSION['logged']))
         //header("Location:index.php");
 		header("Location:login.php");
       }  
+}else {
+    header("Location:login.php");
 }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 09:02 PM
+-- Generation Time: Apr 30, 2024 at 02:41 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -59,6 +59,14 @@ CREATE TABLE `bill` (
   `payment_status` enum('paid','unpaid') DEFAULT 'unpaid'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `bill`
+--
+
+INSERT INTO `bill` (`bill_id`, `user_id`, `reading_id`, `tariff_id`, `units`, `dues`, `total_amount`, `payment_status`) VALUES
+(1, 1, 7, 1, 100, 0, 9000.00, 'unpaid'),
+(2, 2, 9, 1, 100, 0, 9000.00, 'paid');
+
 -- --------------------------------------------------------
 
 --
@@ -68,10 +76,36 @@ CREATE TABLE `bill` (
 CREATE TABLE `complain` (
   `complain_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `complain_text` text DEFAULT NULL,
+  `complain_text` varchar(20) DEFAULT NULL,
   `complain_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `resolved` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `complain`
+--
+
+INSERT INTO `complain` (`complain_id`, `user_id`, `complain_text`, `complain_date`, `resolved`) VALUES
+(1, NULL, NULL, '2024-04-28 05:53:43', 0),
+(2, NULL, NULL, '2024-04-28 05:57:40', 0),
+(3, NULL, NULL, '2024-04-28 06:01:58', 0),
+(4, NULL, NULL, '2024-04-28 06:26:56', 0),
+(5, 2, NULL, '2024-04-28 06:33:28', 1),
+(6, 2, 'hi', '2024-04-28 06:42:21', 1),
+(7, 2, NULL, '2024-04-30 07:16:04', 0),
+(8, 2, 'kkk', '2024-04-30 07:20:03', 0),
+(9, 2, 'kk', '2024-04-30 07:20:20', 0),
+(10, 2, NULL, '2024-04-30 07:22:04', 0),
+(11, 2, NULL, '2024-04-30 07:39:52', 0),
+(12, 2, NULL, '2024-04-30 07:40:08', 0),
+(13, 2, NULL, '2024-04-30 07:41:03', 0),
+(14, 2, NULL, '2024-04-30 07:41:09', 1),
+(15, 2, NULL, '2024-04-30 07:55:29', 0),
+(16, 2, 'kkk', '2024-04-30 07:56:47', 1),
+(17, 2, 'kkk', '2024-04-30 07:58:22', 1),
+(18, 2, 'hi', '2024-04-30 08:04:53', 1),
+(19, 2, 'hi', '2024-04-30 08:06:34', 1),
+(20, 2, 'niraj', '2024-04-30 08:20:29', 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +164,10 @@ INSERT INTO `meter_reading` (`reading_id`, `user_id`, `previous_reading_date`, `
 (3, 1, '2024-04-30', 200.00, '2024-04-16', 300.00),
 (4, 1, '2024-04-30', 200.00, '2024-04-19', 300.00),
 (5, 1, '2024-04-30', 200.00, '2024-04-19', 300.00),
-(6, 1, '2024-04-30', 200.00, '2024-04-19', 300.00);
+(6, 1, '2024-04-30', 200.00, '2024-04-19', 300.00),
+(7, 1, '2024-04-30', 200.00, '2024-04-19', 300.00),
+(8, 2, '2024-03-30', 100.00, '2024-04-30', 200.00),
+(9, 2, '2024-04-30', 200.00, '2024-04-28', 300.00);
 
 -- --------------------------------------------------------
 
@@ -273,13 +310,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `complain`
 --
 ALTER TABLE `complain`
-  MODIFY `complain_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `complain_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `meter_reader`
@@ -291,7 +328,7 @@ ALTER TABLE `meter_reader`
 -- AUTO_INCREMENT for table `meter_reading`
 --
 ALTER TABLE `meter_reading`
-  MODIFY `reading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `reading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `payment_record`

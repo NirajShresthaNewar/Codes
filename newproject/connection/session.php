@@ -5,25 +5,13 @@
     session_start();
 	echo "session start from session.php";
     $logged = false;
-    //checking if anyone(admin/email)is logged in or not
+    //checking if anyoneis logged in or not
     if(isset($_SESSION['logged']))
     {
         if ($_SESSION['logged'] == true)
         {echo "session not destroyed from session.php";
             $logged = true ;
-            $email = $_SESSION['email'];
-	
-        if ($_SESSION['account']=="admin") {
-                header("Location:users/admin/index.php");
-            }
-        elseif ($_SESSION['account']=="user") {
-                header("Location:users/user/index.php");
-            }
-			elseif ($_SESSION['account']=="user") {
-                header("Location:users/reader/index.php");
-            }
-    
-			
+            $email = $_SESSION['email'];		
         }
     }else {
 	$logged=false;

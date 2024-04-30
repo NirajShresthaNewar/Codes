@@ -33,9 +33,10 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
+                 <a href="./Includes/billsUser.php"> <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Bills view</h4>
                     <h5 style="color:white;">
+                    </a>
                     <?php
 					
                     ?></h5>
@@ -43,24 +44,29 @@
             </div>
             <div class="col-sm-3">
                 <div class="card">
-                    <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">complain</h4>
-                    <h5 style="color:white;">
-                    <?php
-                     
-                   ?>
-                   </h5>
+                    <a href="./Includes/billsRecord.php"> <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
+                    <h4 style="color:white;">Bills Record</h4>
+                    </a>
                 </div>
             </div>
             <div class="col-sm-3">
             <div class="card">
-                    <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Bill records</h4>
+            <a href="./Includes/complainUsers.php">    <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
+                    <h4 style="color:white;">Complaint</h4>
                     <h5 style="color:white;">
-                    <?php
-                    
-                   ?>
+                   
                    </h5>
+                   </a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="card">
+            <a href="./Includes/PaymentUser.php">    <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
+                    <h4 style="color:white;">Payment Records</h4>
+                    <h5 style="color:white;">
+                   
+                   </h5>
+                   </a>
                 </div>
             </div>
          
@@ -74,7 +80,7 @@
 
       
     <script type="text/javascript" src="./assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" ></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 </body>

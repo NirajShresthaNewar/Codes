@@ -1,17 +1,10 @@
 <?php
 // Establish MySQL connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wbillingsystem";
-//$dbname = "waterbillingsystem";
+require_once('../../../connection/config.php'); 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user ID from the form
@@ -19,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Fetch last meter reading for the user from the database
     $query = "SELECT current_reading_value, current_reading_date FROM meter_reading WHERE user_id = ? ORDER BY current_reading_date DESC LIMIT 1";
-    $statement = $conn->prepare($query);
+    $statement = $con->prepare($query);
     $statement->bind_param('i', $userId);
     $statement->execute();
     $result = $statement->get_result();
@@ -42,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close connection
-$conn->close();
+
 ?>
 
 <!DOCTYPE html>
