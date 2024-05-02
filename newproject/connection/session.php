@@ -3,13 +3,14 @@
 <?php  
     require_once("config.php");
     session_start();
-	echo "session start from session.php";
+	//echo "session start from session.php";
     $logged = false;
     //checking if anyoneis logged in or not
     if(isset($_SESSION['logged']))
     {
         if ($_SESSION['logged'] == true)
-        {echo "session not destroyed from session.php";
+        {
+            //echo "session not destroyed from session.php";
             $logged = true ;
             $email = $_SESSION['email'];		
         }
@@ -23,7 +24,7 @@
 		
         $email = "";
         if (isset($_POST['email']) && isset($_POST['password']))
-        {echo "fetching email";
+        {//echo "fetching email";
 			
             $email=$_POST['email'];
             $password=$_POST['password'];            
