@@ -57,22 +57,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          include "../adminHeader.php";
          include "../sidebar.php";
 ?>   
-    <h2>Add Reader Details</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+    <div class="containers">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
+        <div class="wrapper">
+            <div class="title">Add Reader Details</div>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="field">
+                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="username">Username</label>
+                </div>
+                <div class="field">
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="email">Email</label>
+                </div>
+                <div class="field">
+                    <input type="password" id="password" name="password" required><br><br>
+                    <label for="password">Password</label>
+                </div>
+                <div class="field">
+                    <input type="text" id="phone" name="phone" required><br><br>
+                    <label for="phone">Phone Number</label>
+                </div>
+                <div class="field">
+                    
+                    <button type="submit" class="submit button">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
+<!--</div>-->
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>

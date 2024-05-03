@@ -90,21 +90,3 @@
       .sidebar a {font-size: 18px;}
     }
 
-/*complain status*/
-.container{
-  height: auto;
-  width: 80%;
-  background:linear-gradient(to right, #fdfeff, #e8f1f1);
-  padding-left: 200px;
-
-  
-}
-.container #TableComplaintcss{
-  border-radius: 15px;
-  border: 1px solid black;
-  box-sizing: border-box;
-  box-shadow: #3B3131;
-  width: 80%;
-
-  
-}

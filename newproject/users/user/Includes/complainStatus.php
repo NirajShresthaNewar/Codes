@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
     <h2>Complaints</h2>
     <div class="container">
 
-        <table  id="TableComplaintcss">
+        <table>
             <tr><th>Complaint ID</th><th>Complaint</th><th>Date</th><th>Action</th></tr>
             <?php   
     while($row = $result->fetch_assoc()) {
