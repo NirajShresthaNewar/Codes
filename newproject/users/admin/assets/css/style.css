@@ -185,3 +185,6 @@ a:hover{
 .wrapper form .field .submit.button:active {
   transform: scale(0.95);
 }
+.search{
+ border-radius: 15px; 
+}

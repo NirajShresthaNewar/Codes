@@ -58,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="wrapper">
 
             <div class="title">
-                Enter Current Reading
+                <h1>Enter Current</h1>
+                <h1>Reading</h1> 
             </div>
             <form action="update.php" method="POST">
                 <div class="field">
@@ -87,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         </div>
     <script type="text/javascript" src="../assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

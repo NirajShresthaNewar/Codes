@@ -30,33 +30,69 @@ $current_reading_date = $_POST['current_reading_date'];
 $reading_id = $_POST['reading_id'];
 ?>
 
-<h2>Update Bill</h2>
+<div class="containers">
+<div class="wrapper">
+<div class="title">
 
-<form action="billUpdateProcess.php" method="post">
-    <!-- Input fields pre-filled with data from the first form from billsViewAdmin hidden inputs of update -->
-    <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
-    <label for="units">Units:</label>
-    <input type="text" id="units" name="units" value="<?= $units ?>"><br>
-    <label for="tariff_rate">Rate:</label>
-    <input type="text" id="tariff_rate" name="tariff_rate" value="<?= $tariff_rate ?>"><br>
-    <label for="total_amount">Total Amount:</label>
-    <input type="text" id="total_amount" name="total_amount" value="<?= $total_amount ?>"><br>
-    <label for="payment_status">Payment Status:</label>
-    <input type="text" id="payment_status" name="payment_status" value="<?= $payment_status ?>"><br>
-    <label for="previous_reading_value">Previous Reading Value:</label>
-    <input type="text" id="previous_reading_value" name="previous_reading_value" value="<?= $previous_reading_value ?>"><br>
-    <label for="previous_reading_date">Previous Reading Date:</label>
-    <input type="date" id="previous_reading_date" name="previous_reading_date" value="<?= $previous_reading_date ?>"><br>
-    <label for="current_reading_value">Current Reading Value:</label>
-    <input type="text" id="current_reading_value" name="current_reading_value" value="<?= $current_reading_value ?>"><br>
-    <label for="current_reading_date">Current Reading Date:</label>
-    <input type="date" id="current_reading_date" name="current_reading_date" value="<?= $current_reading_date ?>"><br>
-    <input type="hidden" name="reading_id" value="<?= $reading_id ?>">
-    <button type="submit">Update</button>
-</form>
+    Update Bill
+</div>
+    
+    <form action="billUpdateProcess.php" method="post">
+        <!-- Input fields pre-filled with data from the first form from billsViewAdmin hidden inputs of update -->
+        <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
+        <div class="field">
+
+            <input type="text" id="units" name="units" value="<?= $units ?>"><br>
+            <label for="units">Units:</label>
+        </div>
+        
+        <div class="field">
+
+            <input type="text" id="tariff_rate" name="tariff_rate" value="<?= $tariff_rate ?>"><br>
+        <label for="tariff_rate">Rate:</label>
+    </div>
+        
+        <div class="field">
+
+            <input type="text" id="total_amount" name="total_amount" value="<?= $total_amount ?>"><br>
+            <label for="total_amount">Total Amount:</label>
+        </div>
+        
+        <div class="field">
+
+            <input type="text" id="payment_status" name="payment_status" value="<?= $payment_status ?>"><br>
+            <label for="payment_status">Payment Status:</label>
+        </div>
+            
+        <div class="field">
+            
+            <input type="text" id="previous_reading_value" name="previous_reading_value" value="<?= $previous_reading_value ?>"><br>
+            <label for="previous_reading_value">Previous Reading Value:</label>
+        </div>
+        
+        <div class="field">
+            <input type="date" id="previous_reading_date" name="previous_reading_date" value="<?= $previous_reading_date ?>"><br>
+            <label for="previous_reading_date">Previous Reading Date:</label>
+        </div>
+        
+        <div class="field">
+            <input type="text" id="current_reading_value" name="current_reading_value" value="<?= $current_reading_value ?>"><br>
+            <label for="current_reading_value">Current Reading Value:</label>
+        </div>
+        
+        <div class="field">
+            <input type="date" id="current_reading_date" name="current_reading_date" value="<?= $current_reading_date ?>"><br>
+            <label for="current_reading_date">Current Reading Date:</label>
+        </div>
+        
+        <input type="hidden" name="reading_id" value="<?= $reading_id ?>">
+        <div class="field">
+            <button class="btn btn-success" type="submit">Update</button>
+        </div>
+    </form>
+</div>    
+
+</div>
 <script type="text/javascript" src="../assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-
 </body>
 </html>

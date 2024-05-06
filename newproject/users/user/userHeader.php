@@ -5,7 +5,7 @@
 ?>
        
  <!-- nav -->
- <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background: linear-gradient(to right, #001c68, #00b8a9);">
+ <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background: linear-gradient(-135deg,#c850c0,#4158d0);">
     
     <a class="navbar-brand ml-5" href="./index.php">
         <img src="/newproject/users/user/assets/images/logo.png" width="80" height="80" alt="Swiss Collection">

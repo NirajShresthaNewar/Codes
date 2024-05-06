@@ -56,8 +56,10 @@ $result = $con->query($sql);
 if ($result->num_rows > 0) {
     // Display complaints in a table
     ?>
+<div class="container">
+
     <h2>Complaints</h2>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Complaint ID</th>
@@ -69,22 +71,23 @@ if ($result->num_rows > 0) {
         </thead>
         <tbody>
             <?php while($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['complain_id'] ?></td>
-                <td><?= $row['username'] ?></td>
-                <td><?= $row['complain_text'] ?></td>
-                <td><?= $row['complain_date'] ?></td>
-                <td>
-                    <form action='' method='post'>
-                        <input type='hidden' name='complaint_id' value='<?= $row['complain_id'] ?>'>
-                        <input type='submit' name='resolve' value='Resolve'>
-                    </form>
-                </td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-<?php
+                <tr>
+                    <td><?= $row['complain_id'] ?></td>
+                    <td><?= $row['username'] ?></td>
+                    <td><?= $row['complain_text'] ?></td>
+                    <td><?= $row['complain_date'] ?></td>
+                    <td>
+                        <form action='' method='post'>
+                            <input type='hidden' name='complaint_id' value='<?= $row['complain_id'] ?>'>
+                            <input class="btn btn-primary" type='submit' name='resolve' value='Resolve'>
+                        </form>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+        </div>
+        <?php
 } else {
     echo "No unresolved complaints found.";
 }
@@ -93,7 +96,5 @@ if ($result->num_rows > 0) {
 $con->close();
 ?>
    <script type="text/javascript" src="../assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

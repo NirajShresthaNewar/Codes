@@ -23,21 +23,22 @@
     <div class="containers">
         <div class="complainWrapper">
     
-        <div class="title"> View Complaints</div>
-            <!-- Button to toggle complaint form visibility -->
             <button class="AddComplainButton" onclick="toggleComplaintForm()">Add Complaint</button>
-        
-        <!-- Complaint submission form -->
-        <form id="complaintForm" action="complainUser.php" method="post" class="hidden">
+            <br>
+            
+            <!-- Button to toggle complaint form visibility -->
+            
+            <!-- Complaint submission form -->
+            <form id="complaintForm" action="complainUser.php" method="post" class="hidden">
                 
-                    <textarea id="complaint" name="complaint" placeholder="write complain" required></textarea><br>
-                    <input type="submit" value="Submit Complaint">
+                <textarea id="complaint" name="complaint" placeholder="write complain" required></textarea><br>
+                <input type="submit" value="Submit Complaint">
                 
             </form>
-            <div>
-                
-                <!-- Complaint status section -->
-                <h2>Complaint Status</h2>
+            <div class="title"> Complaint status</div>
+        <div>
+                <br>
+             
                 <?php
     // Include the PHP code to display complaint status
     require_once('complainStatus.php');
