@@ -61,6 +61,7 @@
             if ($count == 1) {
                 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 $_SESSION['logged']=true;
+                $_SESSION['user'] = $row['username'];
                 $_SESSION['email'] = $email;
                 $_SESSION['aid']=$row['admin_id'];
                 $_SESSION['account']="admin";
@@ -73,6 +74,7 @@
             if ($count == 1) {
                 $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
                 $_SESSION['logged']=true;
+                $_SESSION['user'] = $row['username'];
                 $_SESSION['email'] = $email;
                 $_SESSION['rid']=$row['reader_id'];
                 $_SESSION['account']="reader";

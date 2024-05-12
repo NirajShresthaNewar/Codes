@@ -8,62 +8,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prevDate = $_POST["prevDate"];
     $currReading = $_POST["currReading"];
     $currentDate = date("Y-m-d"); // Get current date
+    $unitsConsumed = $currReading - $prevReading;
+
+    // Calculate due date (30 days after the current reading date)
+    $dueDate = date('Y-m-d', strtotime($currentDate . ' +30 days'));
 
     // Update meter reading in database
-    $query = "INSERT INTO meter_reading (user_id, previous_reading_value, previous_reading_date, current_reading_value, current_reading_date) VALUES (?, ?, ?, ?, ?)";
+    $query = "INSERT INTO meter_reading (user_id, previous_reading_date, previous_reading_value, current_reading_date, current_reading_value) VALUES (?, ?, ?, ?, ?)";
     $statement = $con->prepare($query);
-    $statement->bind_param('idsss', $userId, $prevReading, $prevDate, $currReading, $currentDate);
+    $statement->bind_param('isssd', $userId, $prevDate, $prevReading, $currentDate, $currReading);
     $statement->execute();
 
-    // Fetch the tariff rate based on the tariff ID associated with the user
-    $query = "SELECT additional_charge_rate	 FROM tariff WHERE tariff_id = 1";
-    $statement = $con->prepare($query);
-    $statement->execute();
-    $result = $statement->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $tariffRate = $row['additional_charge_rate'];
-        $unit=$currReading - $prevReading;
-        $billAmount =  $unit * $tariffRate;
-    } 
-
-    //fetching reading id
-    $query ="select max(reading_id) as latestReadingId from meter_reading";
+    // Calculate bill amount based on tariff tiers
+    $query = "SELECT tariff_id, minimum_usage, maximum_usage, unit_price, base_fee FROM tariff";
     $result = $con->query($query);
+
     if ($result && $result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $reading_id=$row['latestReadingId'];
-    } 
-    else{
-        echo "reading meter id failed";
+        while ($row = $result->fetch_assoc()) {
+            $tariffId = $row['tariff_id'];
+            $minUsage = $row['minimum_usage'];
+            $maxUsage = $row['maximum_usage'];
+            $unitPrice = $row['unit_price'];
+            $baseFee = $row['base_fee'];
+
+            // Check if the units consumed fall within the range of this tariff tier
+            if ($unitsConsumed >= $minUsage && $unitsConsumed <= $maxUsage) {
+                // Calculate total bill amount
+                $billAmount = $baseFee + ($unitsConsumed * $unitPrice);
+
+                // Insert bill details into the database
+                $query = "INSERT INTO bill (user_id, reading_id, tariff_id, units, total_amount, due_date) VALUES (?, LAST_INSERT_ID(), ?, ?, ?, ?)";
+                $statement = $con->prepare($query);
+                $statement->bind_param('iiids', $userId, $tariffId, $unitsConsumed, $billAmount, $dueDate);
+                $statement->execute();
+
+                // Check if the bill was inserted successfully
+                if ($statement->affected_rows > 0) {
+                    // Redirect back to the reader page after successful update
+                    echo '<script>';
+                    echo 'alert("Meter reading and bill updated successfully!");';
+                    echo 'window.location.href = "reader.php";';
+                    echo '</script>';
+                    exit(); // Exit the script to prevent further execution
+                } else {
+                    echo "Failed to update bill details.";
+                }
+            }
+        }
+    } else {
+        echo "No tariff details found.";
     }
-
-
-    // Update bill details in database
-    
-    $query = "INSERT INTO bill (reading_id,user_id,tariff_id,units,total_amount) VALUES ($reading_id,$userId,1,$unit,$billAmount)";
-    $statement = $con->prepare($query);
-    
-   if($statement->execute()){
-    if(!$statement->affected_row>0){
-        echo '<script>';
-        echo 'alert("Meter reading and bill updated successfully.!");';
-        echo 'window.location.href="reader.php";';
-        echo '</script>';
-
-    }
-
-
-   } 
-    
-        // User ID not found in database
-
-       
-        
-    
-
-    echo "Meter reading and bill updated successfully.";
 }
 
 // Close connection

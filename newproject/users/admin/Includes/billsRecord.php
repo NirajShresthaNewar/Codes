@@ -2,16 +2,6 @@
 require_once('../../../connection/config.php');
 require_once('../../../connection/session.php');
 
-$user_id = $_SESSION['uid'];
-
-// Fetch paid bills
-$sql = "SELECT b.bill_id, b.tariff_id,b.charge_id, m.previous_reading_value, m.current_reading_date, m.current_reading_value, b.units, b.total_amount, b.payment_status, b.due_date, b.charge_id
-        FROM bill b
-        JOIN meter_reading m ON b.reading_id = m.reading_id
-        WHERE b.user_id = $user_id
-        AND b.payment_status = 'paid'";
-
-$result = $con->query($sql);
 
 ?>
 
@@ -29,14 +19,40 @@ $result = $con->query($sql);
 <body>
     
 <?php 
-include "../userHeader.php";
+include "../adminHeader.php";
 include "../sidebar.php";
 ?>   
 
 <div class="container">
     <div class="title">
-        <h1>Paid Bills</h1>
+        <h1>Bills</h1>
     </div>
+    
+    <!-- Filter Form -->
+    <form method="GET" id="filterForm">
+        <input type="text" class="search" id="user_filter" name="user_filter" placeholder="    Id or Email" value="<?php echo isset($_GET['user_filter']) ? $_GET['user_filter'] : ''; ?>">
+        <button class="btn btn-primary" type="submit">Filter</button>
+        <button class="btn btn-danger" type="button" onclick="resetFilter()">Reset</button>
+    </form>
+
+    <?php
+    // Step 2: Retrieve bills from the database based on filter, if provided
+    $filter = isset($_GET['user_filter']) ? $_GET['user_filter'] : '';
+    $sql = "SELECT b.bill_id,b.charge_id, b.user_id, b.units, b.tariff_id, b.total_amount, b.due_date, b.payment_status, u.email, r.reading_id,
+               r.previous_reading_value, r.previous_reading_date,
+               r.current_reading_value, r.current_reading_date
+            FROM bill b
+            INNER JOIN user u ON b.user_id = u.user_id
+            LEFT JOIN meter_reading r ON b.reading_id = r.reading_id
+            WHERE b.payment_status = 'paid'";
+    
+    if (!empty($filter)) {
+        // Add filter condition to SQL query
+        $sql .= " AND (b.user_id = '$filter' OR u.email = '$filter')";
+    }
+    
+    $result = $con->query($sql);
+    ?>
     
     <table class="table">
         <thead>
@@ -45,9 +61,9 @@ include "../sidebar.php";
                 <th>Previous Reading</th>
                 <th>Current Reading</th>
                 <th>Units</th>
+                <th>Due Date</th>
                 <th>Additional Charge(%)</th>
                 <th>Charged Amount</th>
-                <th>Due Date</th>
                 <th>Total Amount</th>
                 <th>Status</th>
             </tr>
@@ -85,9 +101,9 @@ include "../sidebar.php";
                         <td><?= $row['previous_reading_value'] ?></td>
                         <td><?= $row['current_reading_value'] ?></td>
                         <td><?= $row['units'] ?></td>
+                        <td><?= $row['due_date'] ?></td>
                         <td><?= $additional_charge_percent ? $additional_charge_percent . '%' : 'No Additional Charge' ?></td>
                         <td><?= $additional_charge ? 'Rs ' . $additional_charge : 'No Additional Charge' ?></td>
-                        <td><?= $row['due_date'] ?></td>
                         <td><?= 'Rs ' . $row['total_amount'] ?></td>
                          <td><?= $row['payment_status'] ?></td>
                     </tr>
@@ -101,7 +117,40 @@ include "../sidebar.php";
         </tbody>
     </table>
 </div>
+<script>
+    function resetFilter() {
+        // Reset the filter input field
+        document.getElementById('user_filter').value = '';
+        
+        // Submit the form to reset the filter
+        document.getElementById('filterForm').submit();
+    }
+    function submitForm(formId) {
+        document.getElementById(formId).submit();    
+    }
 
+    function deleteBill(readingId) {
+        if (confirm('Are you sure you want to delete this bill?')) {
+            // Create a hidden form with the bill ID
+            var form = document.createElement('form');
+            form.method = 'post';
+            form.action = 'billDeleteProcess.php'; // PHP script to handle deletion
+
+            // Create a hidden input field for the bill ID
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'reading_id';
+            input.value = readingId;
+
+            // Append the input field to the form
+            form.appendChild(input);
+
+            // Append the form to the document and submit it
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+</script>
 <script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>

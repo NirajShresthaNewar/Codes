@@ -23,6 +23,11 @@ require_once("connection/session.php");
                 <input type="password" name="password" placeholder="Password">
                 <input type="text" name="contact_num" placeholder="Contact Number"> <!-- Added contact number field -->
                 <input type="text" name="address" placeholder="Address"> <!-- Added address field -->
+        <select id="admin_id" name="admin_id" required>
+            <option value="1">Admin 1</option>
+            <option value="2">Admin 2</option>
+            
+        </select><br>
                 <button type="submit">Sign Up</button>
             </form>
         </div>
@@ -37,13 +42,13 @@ require_once("connection/session.php");
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all site features</p>
+                    <h1>Water-Billing System</h1>
+                    <p>Efficiency Flows Through Every Drop</p>
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all site features</p>
+                    <h1>Water-Billing System</h1>
+                    <p>Billing Made Simple, Water Conservation Made Easy</p>
                     <button class="hidden" id="register">Sign Up</button>
                 </div>
             </div>

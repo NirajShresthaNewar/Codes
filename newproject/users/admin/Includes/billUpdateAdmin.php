@@ -19,9 +19,6 @@
 <?php
 // Retrieve data from the first form
 $bill_id = $_POST['bill_id'];
-$units = $_POST['units'];
-$tariff_rate = $_POST['tariff_rate'];
-$total_amount = $_POST['total_amount'];
 $payment_status = $_POST['payment_status'];
 $previous_reading_value = $_POST['previous_reading_value'];
 $previous_reading_date = $_POST['previous_reading_date'];
@@ -40,30 +37,9 @@ $reading_id = $_POST['reading_id'];
     <form action="billUpdateProcess.php" method="post">
         <!-- Input fields pre-filled with data from the first form from billsViewAdmin hidden inputs of update -->
         <input type="hidden" name="bill_id" value="<?= $bill_id ?>">
-        <div class="field">
-
-            <input type="text" id="units" name="units" value="<?= $units ?>"><br>
-            <label for="units">Units:</label>
-        </div>
         
-        <div class="field">
-
-            <input type="text" id="tariff_rate" name="tariff_rate" value="<?= $tariff_rate ?>"><br>
-        <label for="tariff_rate">Rate:</label>
-    </div>
         
-        <div class="field">
-
-            <input type="text" id="total_amount" name="total_amount" value="<?= $total_amount ?>"><br>
-            <label for="total_amount">Total Amount:</label>
-        </div>
         
-        <div class="field">
-
-            <input type="text" id="payment_status" name="payment_status" value="<?= $payment_status ?>"><br>
-            <label for="payment_status">Payment Status:</label>
-        </div>
-            
         <div class="field">
             
             <input type="text" id="previous_reading_value" name="previous_reading_value" value="<?= $previous_reading_value ?>"><br>
@@ -85,6 +61,11 @@ $reading_id = $_POST['reading_id'];
             <label for="current_reading_date">Current Reading Date:</label>
         </div>
         
+        <div class="field">
+        
+            <input type="text" id="payment_status" name="payment_status" value="<?= $payment_status ?>"><br>
+            <label for="payment_status">Payment Status:</label>
+        </div>
         <input type="hidden" name="reading_id" value="<?= $reading_id ?>">
         <div class="field">
             <button class="btn btn-success" type="submit">Update</button>

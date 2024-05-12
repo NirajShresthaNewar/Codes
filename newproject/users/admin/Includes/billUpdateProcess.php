@@ -8,9 +8,6 @@ require_once('../../../connection/config.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data 
     $bill_id = $_POST['bill_id'];
-    $units = $_POST['units'];
-    $tariff_rate = $_POST['tariff_rate'];
-    $total_amount = $_POST['total_amount'];
     $payment_status = $_POST['payment_status'];
     $previous_reading_value = $_POST['previous_reading_value'];
     $previous_reading_date = $_POST['previous_reading_date'];
@@ -24,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update the database with the form data
     $update_bill_sql = "UPDATE bill SET 
                         units = '$units',
-                        total_amount = '$total_amount',
                         payment_status = '$payment_status'
                         WHERE bill_id = '$bill_id'";
     

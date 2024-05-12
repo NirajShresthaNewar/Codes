@@ -1,6 +1,8 @@
 <?php
 // Establish MySQL connection
 require_once('../../../connection/config.php'); 
+require_once('../../../connection/session.php'); 
+$username=$_SESSION['user'];
 
 
 
@@ -25,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // User ID not found in database
         echo '<script>';
-        echo 'alert("User id does not exist!");';
+        echo 'alert("User id or reading does not exist!");';
         echo 'window.location.href="reader.php";';
         echo '</script>';
 
