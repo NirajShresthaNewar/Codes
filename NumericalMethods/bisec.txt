@@ -1,0 +1,59 @@
+Bisectn
+
+
+Aim:
+To find the root of the equation f(x) = x^3 - 2x - 5 = 0 using the bisection method.
+
+Theory:
+The bisection method is a numerical technique used to find the root of a function within a given interval. It relies on the intermediate value theorem, which states that if a continuous function f(x) is defined on the interval [a, b] and takes on values of opposite signs at the endpoints (f(a) * f(b) < 0), then there exists at least one root within that interval.
+
+Algorithm:
+1. Start with initial guesses x1 and x2 such that f(x1) * f(x2) < 0.
+2. Compute the midpoint x0 = (x1 + x2) / 2.
+3. If f(x0) = 0 or |f(x0)| < ε, where ε is the desired tolerance, then stop; x0 is the root.
+4. If f(x0) has the same sign as f(x1), replace x1 with x0; otherwise, replace x2 with x0.
+5. Repeat steps 2-4 until the desired accuracy is achieved.
+
+Code:
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+float f(float x) {
+    return x * x * x - 2 * x - 5;
+}
+
+int main() {
+    float x1, x2, x0;
+    float e = 0.001;
+
+    printf("Enter the value of x1 and x2:\n");
+    scanf("%f %f", &x1, &x2);
+    printf("Initial guess: %f %f\n", x1, x2);
+
+    if(f(x1) * f(x2) > 0) {
+        printf("Wrong initial guess!!!\n");
+        exit(0);
+    }
+
+    x0 = (x1 + x2) / 2;
+
+    while (fabs(f(x0)) > e) {
+        if(f(x0) * f(x1) > 0) {
+            x1 = x0;
+        } else {
+            x2 = x0;
+        }
+        x0 = (x1 + x2) / 2;
+        printf("x1 = %f, x2 = %f,\n x0 = %f, f(x0) = %f\n", x1, x2, x0, f(x0));
+    }
+
+    printf("The root = %f\n", x0);
+    return 0;
+}
+
+Conclusion:
+The bisection method effectively found the root of the equation x^3 - 2x - 5 = 0 within the tolerance of 0.001. While simple and reliable, its efficiency hinges on initial guess selection and desired accuracy. Exploring alternative methods may optimize performance for more complex equations.
+```
+
+This version should fit within the width of the console. Let me know if you need further adjustments!
